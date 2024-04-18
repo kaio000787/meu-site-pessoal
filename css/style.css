@@ -3,10 +3,6 @@ body{
     font-family: 'roboto', sans-serif;
 }
 
-header {
-    padding: 50px;          
-}
-
  header img {
     height: 150px;
     border-radius: 80px;
@@ -19,8 +15,10 @@ header, footer{
 }
 
 nav{
-    background-color: #46b3bb;    
+    background-color: #46b3bb;
+    text-align: center;
 }
+
 
 nav ul {
     margin: 0;
@@ -52,7 +50,7 @@ footer {
     padding: 10px;
 }
 
-.button  {
+ .button  {
     border: 0;
     color:#515f69;
     padding: 26px;
@@ -65,7 +63,18 @@ footer {
 }   
 
 @media only screen and (max-width: 600px) {
-    nav ul li {   
-        margin: 15px;    
+    .button {
+        border: 0;
+        display: block;
+        margin: 0 auto;
+        text-transform: uppercase;
+        color: white;
+        width: 150px;
+        padding: 10px;
     }
-}
+    
+    .button:hover {
+        opacity: 0.8;
+        cursor: pointer;
+    }
+} 
