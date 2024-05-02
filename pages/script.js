@@ -9,7 +9,7 @@ function enviarMensagemWhatsApp() {
     const telefone = telefoneInput.value.trim();
     const mensagem = mensagemInput.value.trim();
   
-    const whatsappUrl = `https://api.whatsapp.com/send?phone=5581982462343&text=
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=5581982562343&text=
     Nome: ${nome}%0A
     E-mail: ${email}%0A
     Telefone: ${telefone}%0A
