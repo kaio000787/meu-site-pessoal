@@ -1,60 +1,34 @@
 
-function validarFormulario() {
-  const form = document.querySelector('form');
-  const inputs = form.querySelectorAll('input');
-
-  let isValid = true;
-
-  inputs.forEach(input => {
-      if (!input.checkValidity()) {
-          input.classList.add('invalid');
-          isValid = false;
-      } else {
-          input.classList.remove('invalid');
-      }
-  });
-
-  return isValid;
-}
-
-function enviarFormulario() {
-  if (validarFormulario()) {
-      enviarParaWhatsApp();
+function enviarMensagemWhatsApp() {
+    const nomeInput = document.getElementById('input-nome');
+    <div id="name-error" class="error"></div>;
+    const emailInput = document.getElementById('input-email');
+    <div id="name-error" class="error"></div>;
+    const telefoneInput = document.getElementById('input-tel');
+    <div id="name-error" class="error"></div>;
+    const mensagemInput = document.getElementById('input-msg');
+    <div id="name-error" class="error"></div>;
+  
+    const nome = nomeInput.value.trim();
+    const email = emailInput.value.trim();
+    const telefone = telefoneInput.value.trim();
+    const mensagem = mensagemInput.value.trim();
+  
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=5581982562343&text=
+    Nome: ${nome}%0A
+    E-mail: ${email}%0A
+    Telefone: ${telefone}%0A
+    Mensagem: ${mensagem}`;
+  
+    window.open(whatsappUrl, '_blank');
   }
-}
-
-// Função de máscara de telefone
-function mascaraTelefone(telefone) {
-  const texto = telefone.value;
-  const textoApenasNumeros = texto.replace(/\D/g, '').substring(0, 11);
-
-  let telefoneFormatado = textoApenasNumeros.replace(/^(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
-
-  if (textoApenasNumeros.length < 11) {
-      telefoneFormatado = textoApenasNumeros.replace(/^(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+function formatarTelefone(input) {
+  let telefone = input.value.replace(/\D/g, '');
+  if (telefone.length > 11) {
+    telefone = telefone.slice(0, 11);
   }
-
-  telefone.value = telefoneFormatado;
-}
-
-// Adicionar evento de input ao campo de telefone
-const campoTelefone = document.getElementById('input-tel');
-campoTelefone.addEventListener('input', function () {
-  mascaraTelefone(this);
-});
-
-function enviarParaWhatsApp() {
-  const nome = document.getElementById('input-nome').value;
-  const email = document.getElementById('input-email').value;
-  const telefone = document.getElementById('input-tel').value;
-  const mensagem = document.getElementById('input-msg').value;
-
-  const texto = `Nome: ${nome}\nE-mail: ${email}\nTelefone: ${telefone}\nMensagem: ${mensagem}`;
-  const textoCodificado = encodeURIComponent(texto);
-  const numeroWhatsApp = '5581982562343'; // Insira o número de telefone do WhatsApp aqui (apenas números)
-  const url = `https://wa.me/${numeroWhatsApp}?text=${textoCodificado}`;
-
-  window.open(url, '_blank');
+  telefone = telefone.replace(/^(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+  input.value = telefone;
 }
     
 
