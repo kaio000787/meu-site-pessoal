@@ -15,21 +15,22 @@ function enviarMensagemWhatsApp() {
     const mensagem = mensagemInput.value.trim();
   
     const whatsappUrl = `https://api.whatsapp.com/send?phone=5581982562343&text=
-    Nome: ${nome}%0A
-    E-mail: ${email}%0A
-    Telefone: ${telefone}%0A
+    Nome: ${nome}%0A;
+    E-mail: ${email}%0A;
+    Telefone: ${telefone}%0A;
     Mensagem: ${mensagem}`;
   
     window.open(whatsappUrl, '_blank');
   }
-function formatarTelefone(input) {
-  let telefone = input.value.replace(/\D/g, '');
-  if (telefone.length > 11) {
-    telefone = telefone.slice(0, 11);
+  
+  function formatarTelefone(input) {
+    let telefone = input.value.replace(/\D/g, '');
+    if (telefone.length > 11) {
+      telefone = telefone.slice(0, 11);
+    }
+    telefone = telefone.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+    input.value = telefone;
   }
-  telefone = telefone.replace(/^(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
-  input.value = telefone;
-}
     
 
 
